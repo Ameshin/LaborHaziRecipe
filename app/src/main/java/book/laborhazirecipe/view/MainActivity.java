@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView lv = (ListView) findViewById(R.id.recipe_list);
-        //Testing SugarORM entity save and load
+        //Testing SugarORM entity save and load. Recipe loading will be in Presenter.
         TextView tv = (TextView) findViewById(R.id.main_text);
         //Create ingredients list
         List<String> list = new ArrayList<>();

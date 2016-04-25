@@ -1,0 +1,134 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: CookBookLabor API
+  description: Browse and save recipes
+  version: "1.0.0"
+# the domain of the service
+host: api.cookbook.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /api_v1
+produces:
+  - application/json
+paths:
+  /recipes:
+    get:
+      summary: List of recipes
+      description: |
+        The recipes endpoint returns our current recipe list
+      parameters:
+        - name: start
+          in: query
+          description: Starting index of products, default 0.
+          required: false
+          type: number
+          format: int32
+      tags:
+        - Recipes
+      responses:
+        200:
+          description: An array of product headers
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RecipeHeader'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /recipes/{id}:
+    get:
+      summary: A single recipe
+      description: |
+        The recipes/{id} endpoint returns a single recipe's body
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier representing a specific recipe.
+          required: true
+          type: string
+      tags:
+        - Recipes
+      responses:
+        200:
+          description: A recipe body
+          schema:
+            type: object
+            $ref: '#/definitions/RecipeBody'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  RecipeHeader:
+    type: object
+    properties:
+      id:
+        type: number
+        format: int32
+        description: Unique identifier representing a specific recipe.
+      name:
+        type: string
+        description: Name of a recipe
+      prepTime:
+        type: string
+        description: Time required to prepare meal
+      serves:
+        type: string
+        description: How many people it serves
+      difficulty:
+        type: number
+        format: int32
+        description: Difficulty of preparing the meal
+      cost:
+        type: number
+        format: int32
+        description: Cost of a recipe for given people
+  RecipeBody:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of a recipe
+      prepTime:
+        type: string
+        description: Time required to prepare meal
+      serves:
+        type: string
+        description: How many people it serves
+      difficulty:
+        type: number
+        format: int32
+        description: Difficulty of preparing the meal
+      cost:
+        type: number
+        format: int32
+        description: Cost of a recipe for given people
+      preparation:
+        type: string
+        description: Guide to prepare the meal described in the recipe.
+      ingredients:
+        type: array
+        items:
+          $ref: '#/definitions/Ingredient'
+        description: List of string to get required ingredients for the recipe
+      image:
+        type: string
+        description: image URL for meal image
+  Ingredient:
+    type: string
+    description: Required ingredient's name and amount
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
