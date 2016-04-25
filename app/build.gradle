@@ -5,6 +5,16 @@ android {
     compileSdkVersion 23
     buildToolsVersion '23.0.1'
 
+    productFlavors{
+        devel{
+            applicationId "book.laborhazirecipe.devel"
+            buildConfigField 'String', 'FLAVOR', 'devel'
+        }
+        prod{
+            applicationId "book.laborhazirecipe.prod"
+            buildConfigField 'String', 'FLAVOR', 'prod'
+        }
+    }
     defaultConfig {
         applicationId "book.laborhazirecipe"
         minSdkVersion 21
@@ -28,4 +38,5 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.2'
     compile 'com.google.dagger:dagger:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.github.satyan:sugar:1.4'
 }
