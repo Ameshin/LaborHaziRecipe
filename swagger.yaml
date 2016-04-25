@@ -35,7 +35,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/RecipeHeader'
+              $ref: '#/definitions/RecipeBody'
         default:
           description: Unexpected error
           schema:
@@ -64,33 +64,13 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 definitions:
-  RecipeHeader:
+  RecipeBody:
     type: object
     properties:
       id:
         type: number
         format: int32
         description: Unique identifier representing a specific recipe.
-      name:
-        type: string
-        description: Name of a recipe
-      prepTime:
-        type: string
-        description: Time required to prepare meal
-      serves:
-        type: string
-        description: How many people it serves
-      difficulty:
-        type: number
-        format: int32
-        description: Difficulty of preparing the meal
-      cost:
-        type: number
-        format: int32
-        description: Cost of a recipe for given people
-  RecipeBody:
-    type: object
-    properties:
       name:
         type: string
         description: Name of a recipe
