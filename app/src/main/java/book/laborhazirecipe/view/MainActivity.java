@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("Sajt");
         list.add("Kolbász");
         //create recipe with dummy data and the created list
-        Recipe recipe = new Recipe("First recipe","Másfél óra", 3, 500, 4, "Dobj bele mindent, és kész is!", list, null);
+        Recipe recipe = new Recipe(new BigDecimal(1), "First recipe","Másfél óra", 3, 4, new BigDecimal(500), "Dobj bele mindent, és kész is!", list, null, "");
         recipe.save();
         //testing if recipe was saved successfully
         Recipe recipeLoaded = Recipe.findById(Recipe.class, 1);
