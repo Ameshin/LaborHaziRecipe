@@ -1,19 +1,22 @@
 package book.laborhazirecipe.android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import com.orm.SugarContext;
 
 import book.laborhazirecipe.BuildConfig;
 import book.laborhazirecipe.model.Recipe;
 import book.laborhazirecipe.R;
 import book.laborhazirecipe.presenter.MainPresenter;
 import book.laborhazirecipe.view.MainView;
-import com.orm.SugarApp;
-import com.orm.SugarContext;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -23,24 +26,31 @@ import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
+	private List<Recipe> recipeList = new ArrayList<>();
+
     @Inject
     MainPresenter mainPresenter;
 
+	RecipeAdapter recipeAdapter;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+		SugarContext.init(this);
+		
         LaborHaziRecipeApplication.injector.inject(this);
+		Recipe.findById(Recipe.class, (long) 1);
+        Recipe.listAll(Recipe.class);
 
-        SugarContext.init(this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvRecipes);
 
-        // TODO REFRESH BUTTON findViewById(R.id.btnRefresh).setOnClickListener(new View.OnClickListener() {
-            // @Override
-            // public void onClick(View v) {
-                // mainPresenter.refreshRecipes();
-            // }
-        // });
+        recipeAdapter = new RecipeAdapter(recipeList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(recipesAdapter);
     }
 
     @Override
@@ -48,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onStart();
         mainPresenter.attachView(this);
         mainPresenter.refreshRecipes();
+		recipeList = Recipe.listAll(Recipe.class);
+        showRecipes();
     }
 
     @Override
@@ -57,16 +69,34 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showRecipes(List<Recipe> recipes) {
-        final ArrayList<Recipe> list = new ArrayList<>();
-        for (int i = 0; i < recipes.size(); ++i) {
-            list.add(recipes.get(i));
-        }
-        //TODO LIST((ListView) findViewById(R.id.listView)).setAdapter( new RecipeAdapter(getApplicationContext(), R.layout.list_item, list));
+    public void showRecipes() {
+        recipeAdapter.setList(recipeList)
     }
 
     @Override
-    public void showMessage(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menu_nav, menu);
+        return true;
+    }
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.onlineSearch:
+                Intent intentOnlineSearch = new Intent(this, MainActivity.class);
+                this.startActivity(intentOnlineSearch);
+                break;
+            case R.id.offlineLookup:
+                Intent intentOfflineLookup = new Intent(this, FavouriteActivity.class);
+                this.startActivity(intentOfflineLookup);
+                break;
+            case R.id.about:
+                Intent intentAbout = new Intent(this, AboutActivity.class);
+                this.startActivity(intentAbout);
+                break;
+        }
+        return true;
     }
 }

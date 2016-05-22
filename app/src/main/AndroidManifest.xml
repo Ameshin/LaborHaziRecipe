@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity android:name=".android.AboutActivity"/>
+		<activity android:name=".android.FavouriteActivity"/>
+		<activity android:name=".android.RecipeDetailsActivity"/>
     </application>
 
 </manifest>

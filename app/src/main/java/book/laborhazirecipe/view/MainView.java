@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface MainView
 {
-    void showRecipes(List<Recipe> recipes);
-
-    void showMessage(String msg);
+	void showRecipes();
 }

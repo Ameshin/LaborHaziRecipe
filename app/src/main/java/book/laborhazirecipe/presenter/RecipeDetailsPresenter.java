@@ -1,12 +1,16 @@
 package book.laborhazirecipe.presenter;
 
-public class RecipeDetailsPresenter {
-    private static RecipeDetailsPresenter ourInstance = new RecipeDetailsPresenter();
+import javax.inject.Inject;
 
-    public static RecipeDetailsPresenter getInstance() {
-        return ourInstance;
-    }
+import book.laborhazirecipe.LaborHaziRecipeApplication;
+import book.laborhazirecipe.interactor.RecipeInteractor;
+import book.laborhazirecipe.view.MainView;
 
-    private RecipeDetailsPresenter() {
+public class RecipeDetailsPresenter extends Presenter<MainView>{
+    @Inject
+    public RecipeInteractor interactor;
+
+    public DetailPresenter() {
+        LaborHaziRecipeApplication.injector.inject(this);
     }
 }

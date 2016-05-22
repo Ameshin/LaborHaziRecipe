@@ -1,34 +1,69 @@
 package book.laborhazirecipe.android;
 
-import android.content.Context;
-import android.widget.ArrayAdapter;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-import book.laborhazirecipe.model.Recipe;
-
-import java.util.HashMap;
 import java.util.List;
 
-public class RecipeAdapter extends ArrayAdapter<Recipe> {
+import book.laborhazirecipe.R;
+import book.laborhazirecipe.model.Recipe;
 
-    HashMap<Recipe, Integer> mIdMap = new HashMap<Recipe, Integer>();
+public class RecipeAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
 
-    public RecipeAdapter(Context context, int textViewResourceId,
-                         List<Recipe> objects) {
-        super(context, textViewResourceId, objects);
-        for (int i = 0; i < objects.size(); ++i) {
-            mIdMap.put(objects.get(i), i);
+	private List<Recipe> recipeList;
+
+    public class RecipeViewHolder extends RecyclerView.ViewHolder {
+        public TextView name;
+
+        public RecipeViewHolder(View view) {
+            super(view);
+            name = (TextView) view.findViewById(R.id.tvRecipeName);
         }
     }
 
-    @Override
-    public long getItemId(int position) {
-        Recipe item = getItem(position);
-        return mIdMap.get(item);
+    public RecipeAdapter(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
+        notifyDataSetChanged();
+    }
+
+    public void setList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
+        notifyDataSetChanged();
     }
 
     @Override
-    public boolean hasStableIds() {
-        return true;
+    public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_row, parent, false);
+
+        return new RecipeViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(RecipeViewHolder holder, final int position) {
+        final Recipe recipe = recipeList.get(position);
+        holder.name.setText(recipe.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Recipe r = Recipe.findById(Recipe.class, position);
+                Intent intent = new Intent(v.getContext(), RecipeDetailsActivity.class);
+                intent.putExtra("recipeName", recipe.getName());
+                intent.putExtra("recipePreparation", recipe.getPreparation());
+                intent.putExtra("recipeImageUrl", recipe.getImageUrl());
+                intent.putExtra("recipeIngredients", recipe.getIngredients());
+                v.getContext().startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return recipeList.size();
     }
 
 
