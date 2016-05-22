@@ -2,7 +2,7 @@ package book.laborhazirecipe.presenter;
 
 import javax.inject.Inject;
 
-import book.laborhazirecipe.LaborHaziRecipeApplication;
+import book.laborhazirecipe.android.LaborHaziRecipeApplication;
 import book.laborhazirecipe.interactor.RecipeInteractor;
 import book.laborhazirecipe.view.AboutView;
 

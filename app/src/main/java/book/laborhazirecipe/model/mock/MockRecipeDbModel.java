@@ -1,8 +1,9 @@
 package book.laborhazirecipe.model.mock;
 
-import book.laborhazirecipe.model.prod.PeopleDbModel;
-import book.laborhazirecipe.model.Person;
+import book.laborhazirecipe.model.prod.RecipeDbModel;
+import book.laborhazirecipe.model.Recipe;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

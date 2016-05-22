@@ -50,14 +50,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(recipesAdapter);
+        recyclerView.setAdapter(recipeAdapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         mainPresenter.attachView(this);
-        mainPresenter.refreshRecipes();
 		recipeList = Recipe.listAll(Recipe.class);
         showRecipes();
     }
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showRecipes() {
-        recipeAdapter.setList(recipeList)
+        recipeAdapter.setList(recipeList);
     }
 
     @Override

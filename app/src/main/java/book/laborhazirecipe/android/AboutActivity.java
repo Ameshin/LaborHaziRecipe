@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import javax.inject.Inject;
 
 import book.laborhazirecipe.presenter.AboutPresenter;
+import book.laborhazirecipe.view.AboutView;
 import book.laborhazirecipe.R;
 
 public class AboutActivity extends AppCompatActivity implements AboutView {

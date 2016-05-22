@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 import book.laborhazirecipe.R;
 import book.laborhazirecipe.model.Recipe;
-import book.laborhazirecipe.presenter.FavoruitePresenter;
+import book.laborhazirecipe.presenter.FavouritePresenter;
 import book.laborhazirecipe.view.MainView;
 
 public class FavouriteActivity extends AppCompatActivity implements MainView{

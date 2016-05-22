@@ -5,6 +5,7 @@ import book.laborhazirecipe.model.prod.RecipeDbModel;
 import book.laborhazirecipe.model.Recipe;
 import book.laborhazirecipe.network.RecipesApi;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,7 +35,7 @@ public class RecipeInteractor {
         public List<Recipe> getRecipesFromNetwork() throws Exception {
             Response<List<Recipe>> response = null;
 
-            Call<List<Recipe>> call = recipesApi.recipesGet();
+            Call<List<Recipe>> call = recipesApi.recipesGet(new BigDecimal(0));
             try {
                 response = call.execute();
             } catch (Exception e) {

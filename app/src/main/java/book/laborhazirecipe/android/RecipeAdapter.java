@@ -12,7 +12,7 @@ import java.util.List;
 import book.laborhazirecipe.R;
 import book.laborhazirecipe.model.Recipe;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
 	private List<Recipe> recipeList;
 
@@ -55,7 +55,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVie
                 intent.putExtra("recipeName", recipe.getName());
                 intent.putExtra("recipePreparation", recipe.getPreparation());
                 intent.putExtra("recipeImageUrl", recipe.getImageUrl());
-                intent.putExtra("recipeIngredients", recipe.getIngredients());
                 v.getContext().startActivity(intent);
             }
         });
