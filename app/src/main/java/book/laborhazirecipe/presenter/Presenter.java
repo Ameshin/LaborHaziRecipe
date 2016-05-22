@@ -1,13 +1,13 @@
 package book.laborhazirecipe.presenter;
 
+public abstract class Presenter<S> {
+    protected S view;
 
-public class Presenter {
-    private static Presenter ourInstance = new Presenter();
-
-    public static Presenter getInstance() {
-        return ourInstance;
+    public void attachView(S screen) {
+        this.view = screen;
     }
 
-    private Presenter() {
+    public void detachView() {
+        this.view = null;
     }
 }

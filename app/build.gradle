@@ -5,40 +5,46 @@ android {
     compileSdkVersion 23
     buildToolsVersion '23.0.1'
 
-    productFlavors{
-        devel{
-            applicationId "book.laborhazirecipe.devel"
-        }
-        prod{
-            applicationId "book.laborhazirecipe.prod"
-        }
-    }
-    defaultConfig {
+	defaultConfig {
         applicationId "book.laborhazirecipe"
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
+	
+	buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+	
+    productFlavors{
+        mock{
+            applicationId "book.laborhazirecipe.mock"
+        }
+        prod{
+            applicationId "book.laborhazirecipe.prod"
+        }
+    }
+    
+    
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
-    // apt command comes from the android-apt plugin
-    apt 'com.google.dagger:dagger-compiler:2.2'
+	compile 'com.github.satyan:sugar:1.4'
+    
+	// Dagger 2 and Compiler
+    compile "com.google.dagger:dagger-compiler:2.2"
     compile 'com.google.dagger:dagger:2.2'
+	apt 'com.google.dagger:dagger-compiler:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
-    compile 'com.github.satyan:sugar:1.4'
-
-     //Retrofit and OkHttp
+	
+    //Retrofit and OkHttp
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
     compile 'com.squareup.okhttp3:okhttp:3.0.1'

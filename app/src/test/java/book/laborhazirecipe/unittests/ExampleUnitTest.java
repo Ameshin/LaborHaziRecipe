@@ -1,12 +1,12 @@
-package book.laborhazirecipe;
+package book.laborhazirecipe.unittests;
 
-import org.junit.Test;
+import book.laborhazirecipe.model.Recipe;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
-import book.laborhazirecipe.model.Recipe;
+import static org.junit.Assert.*;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.

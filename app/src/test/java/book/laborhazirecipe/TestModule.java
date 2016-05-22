@@ -2,6 +2,12 @@ package book.laborhazirecipe;
 
 import android.content.Context;
 
+import book.laborhazirecipe.interactor.InteractorModule;
+import book.laborhazirecipe.model.prod.ModelModule;
+import book.laborhazirecipe.model.prod.PeopleDbModel;
+import book.laborhazirecipe.presenter.MainPresenter;
+import book.laborhazirecipe.view.ViewModule;
+
 import java.util.concurrent.Executor;
 
 import javax.inject.Singleton;
@@ -21,15 +27,14 @@ public class TestModule {
         this.modelModule = new ModelModule();
     }
 
-    //TODO
     @Provides
     public Context provideContext() {
         return viewModule.provideContext();
     }
 
     @Provides
-    public PeopleDbModel provideLoginPresenter() {
-        return modelModule.providePeopleDbModel();
+    public RecipeDbModel provideLoginPresenter() {
+        return modelModule.provideRecipeDbModel();
     }
 
     @Provides
