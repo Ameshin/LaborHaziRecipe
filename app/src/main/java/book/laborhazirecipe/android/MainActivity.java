@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.crashlytics.android.Crashlytics;
 import com.orm.SugarContext;
 
 import book.laborhazirecipe.BuildConfig;
@@ -18,6 +19,7 @@ import book.laborhazirecipe.R;
 import book.laborhazirecipe.presenter.MainPresenter;
 import book.laborhazirecipe.view.MainView;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
 		SugarContext.init(this);

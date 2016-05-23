@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="book.laborhazirecipe">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +26,9 @@
 		<activity android:name=".android.AboutActivity"/>
 		<activity android:name=".android.FavouriteActivity"/>
 		<activity android:name=".android.RecipeDetailsActivity"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="66d7f1ca63cd60f2df51c95416b1bf59e5eb31d4" />
     </application>
 
 </manifest>

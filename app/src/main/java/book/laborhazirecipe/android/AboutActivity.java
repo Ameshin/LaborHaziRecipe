@@ -3,9 +3,13 @@ package book.laborhazirecipe.android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -15,6 +19,8 @@ import book.laborhazirecipe.R;
 
 public class AboutActivity extends AppCompatActivity implements AboutView {
 
+    Tracker mTracker;
+
 	@Inject
     AboutPresenter aboutPresenter;
 
@@ -22,6 +28,11 @@ public class AboutActivity extends AppCompatActivity implements AboutView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        LaborHaziRecipeApplication app = (LaborHaziRecipeApplication) getApplication();
+        mTracker = app.getDefaultTracker();
+        Log.i("Analytics", "AboutActivity");
+        mTracker.setScreenName("AboutActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
 	@Override
