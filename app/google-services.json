@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "594730636027",
+    "project_id": "laborhazirecipe"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594730636027:android:d777adbb3335472b",
+        "android_client_info": {
+          "package_name": "book.laborhazirecipe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVgH3GOjz4ISme2Hwt_ZsbIukN0ybsXq8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-78189638-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594730636027:android:b37facf85e41445a",
+        "android_client_info": {
+          "package_name": "book.laborhazirecipe.mock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVgH3GOjz4ISme2Hwt_ZsbIukN0ybsXq8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-78189638-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
